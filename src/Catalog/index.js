@@ -18,7 +18,7 @@ app.get('/catalog/info/:id', (req, res) => {
         if (row) {
             res.json(row);
         } else {
-            res.status(404).send('Book not found');
+            res.status(404).send('not found');
         }
     });
 });

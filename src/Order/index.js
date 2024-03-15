@@ -6,15 +6,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/purchase/:id/", async (req, res) => {
-  const order = {
-    id: req.params.id,
-  };
-
+  const orderId = req.params.id;
+  console.log("Reached");
   try {
     const response = await axios.post(
-      `http://catalog/order/${order.id}`,
-      order
+      `http://localhost:3003/catalog/order/${orderId}`
     );
+
     res.send({ message: "Sending the request to Catalog" });
   } catch (err) {
     console.log(err);
@@ -26,6 +24,6 @@ app.get("/test", (req, res) => {
   res.send({ Message: "Message Arrived Successfully!" });
 });
 
-app.listen(3000, () => {
-  console.log("Order Service is listening on Port 3000");
+app.listen(3002, () => {
+  console.log("Order Service is listening on Port 3002");
 });

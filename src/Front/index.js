@@ -53,8 +53,4 @@ app.post("/purchase/:id", async (req, res) => {
 
 app.listen(3004, () => {
   console.log("listening on Port 3004");
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> f7a846363bedab8104e254c7ff1920437da5231b

@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("sqlite.db");
+const dbPath = "/app/src/Catalog/sqlite.db";
+const db = new sqlite3.Database(dbPath);
 
 app.use(express.json());
 

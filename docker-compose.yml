@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  catalog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src/Catalog:/app/src/Catalog:ro
+      - ./src/Catalog/sqlite.db:/app/sqlite.db:rw
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - NODE_ENV=production
+
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - NODE_ENV=production
+
+  order:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004"
+    environment:
+      - PORT=3004
+      - NODE_ENV=production
+
+volumes:
+  catalog-db:

@@ -2,7 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const app = express();
 app.use(express.json());
-app.get("/catalog/info/:id", async (req, res) => {
+app.get("/info/:id", async (req, res) => {
   const bookId = req.params.id;
   try {
     const response = await axios.get(
@@ -14,7 +14,7 @@ app.get("/catalog/info/:id", async (req, res) => {
   }
 });
 
-app.get("/catalog/search", async (req, res) => {
+app.get("/search", async (req, res) => {
   try {
     const response = await axios.get(`http://localhost:3003/catalog/search`, {
       params: req.query,
@@ -25,7 +25,7 @@ app.get("/catalog/search", async (req, res) => {
   }
 });
 
-app.get("/catalog/search/:topic", async (req, res) => {
+app.get("/search/:topic", async (req, res) => {
   const topic = req.params.topic;
   try {
     const response = await axios.get(

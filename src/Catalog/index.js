@@ -83,23 +83,24 @@ app.post("/catalog/order/:id", (req, res) => {
       return;
     }
     if (row) {
+      const itemName = row.Name;
       if (row.Quantity != 0) {
         db.run(
           "UPDATE book SET Quantity = Quantity - 1 WHERE id = ?",
           [Id],
           (err) => {
             if (err) {
-              res.status(500).send("Error in editing on the DataBase");
+              res.send("Error in editing on the DataBase");
             } else {
-              res.status(200).send("Order successfully purchased!");
+              res.status(200).send(`bought book ${itemName}`);
             }
           }
         );
       } else {
-        res.status(400).send("No more items for sale!");
+        res.send(`No more ${itemName} item for sale!`);
       }
     } else {
-      res.status(404).send(`Book with ID:-- ${Id} not found`);
+      res.send(`Book with ID:${Id} not found`);
     }
   });
 });
